@@ -3,7 +3,7 @@ import requests
 from config import TOKEN
 
 
-def get_calendar(token: str) -> str:
+def get_calendar(token: str) -> None:
     headers = {'Authorization': token}
     get = requests.get('https://portail.henallux.be/api/plannings/my/ical',
                        headers=headers, timeout=5)
