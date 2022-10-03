@@ -1,10 +1,9 @@
 from hashlib import sha256
+from os import getenv
 from os.path import exists
 from shutil import move
 
 import requests
-
-from config import DOWNLOAD_LOCATION, TOKEN
 
 
 def get_file_hash(file_to_hash: str) -> str:
@@ -36,4 +35,4 @@ if __name__ == "__main__":
             print("New version downloaded")
     else:
         print("File downloaded")
-        download_calendar(TOKEN, DOWNLOAD_LOCATION)
+        download_calendar(getenv(TOKEN), getenv(DOWNLOAD_LOCATION))

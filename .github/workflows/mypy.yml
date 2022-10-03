@@ -1,6 +1,6 @@
 name: mypy
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
     build:
@@ -16,11 +16,12 @@ jobs:
                   python-version: ${{ matrix.python-version }}
             - name: Install dependencies
               run: |
-                  cp config.py.example config.py
+                  cp .env.example .env
                   python -m pip install --upgrade pip
                   pip install -r requirements.txt
                   pip install types-requests
                   pip install mypy
             - name: Analysing the code with mypy
               run: |
+                  source .env
                   mypy $(git ls-files '*.py')

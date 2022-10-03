@@ -1,4 +1,6 @@
 venv
-config.py
+.env
 calendar.ics
 __pycache__
+.mypy_cache
+*.ics
