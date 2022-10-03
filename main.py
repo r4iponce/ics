@@ -1,4 +1,3 @@
-import os
 from hashlib import sha256
 from os import getenv
 from os.path import exists
