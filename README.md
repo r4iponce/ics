@@ -2,8 +2,7 @@
 
 ## How to use
 
-Install dependence from requirements.txt : `pip install -r requirements.txt`. Copy .env.example to .env and source it
-before run.
+Install dependence from requirements.txt : `pip install -r requirements.txt`. Copy .env.example to .env and edit it.
 
 ### Fetch token
 

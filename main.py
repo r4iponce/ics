@@ -1,9 +1,11 @@
+import os
 from hashlib import sha256
 from os import getenv
 from os.path import exists
 from shutil import move
 
 import requests
+from dotenv import load_dotenv
 
 
 def get_file_hash(file_to_hash: str) -> str:
@@ -24,15 +26,20 @@ def download_calendar(token: str, download_path: str) -> None:
         file.write(get.content)
 
 
-if __name__ == "__main__":
-    if exists(DOWNLOAD_LOCATION):
-        TEMP_DOWNLOAD_FILE = "temp_calendar.ics"
-        download_calendar(TOKEN, TEMP_DOWNLOAD_FILE)
-        if verify_version(DOWNLOAD_LOCATION, TEMP_DOWNLOAD_FILE):
+def main(token: str, download_location: str) -> None:
+    if exists(download_location):
+        temp_download_file = "temp_calendar.ics"
+        download_calendar(token, download_location)
+        if verify_version(download_location, temp_download_file):
             print("No new version")
         else:
-            move(TEMP_DOWNLOAD_FILE, DOWNLOAD_LOCATION)
+            move(temp_download_file, download_location)
             print("New version downloaded")
     else:
         print("File downloaded")
-        download_calendar(getenv(TOKEN), getenv(DOWNLOAD_LOCATION))
+        download_calendar(getenv(TOKEN), getenv(download_location))
+
+
+if __name__ == "__main__":
+    load_dotenv()
+    main(getenv('TOKEN'), getenv("DOWNLOAD_LOCATION"))
