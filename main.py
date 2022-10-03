@@ -36,9 +36,9 @@ def main(token: str, download_location: str) -> None:
             print("New version downloaded")
     else:
         print("File downloaded")
-        download_calendar(getenv(TOKEN), getenv(download_location))
+        download_calendar(token, download_location)
 
 
 if __name__ == "__main__":
     load_dotenv()
-    main(getenv('TOKEN'), getenv("DOWNLOAD_LOCATION"))
+    main(str(getenv('TOKEN')), str(getenv("DOWNLOAD_LOCATION")))
